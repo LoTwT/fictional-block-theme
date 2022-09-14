@@ -1,0 +1,20 @@
+{
+  "name": "fictional-block-theme",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start src/index.js our-blocks/banner.js",
+    "dev": "wp-scripts start",
+    "devFast": "wp-scripts start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@glidejs/glide": "^3.5.2",
+    "@wordpress/scripts": "*",
+    "axios": "^0.27.2",
+    "normalize.css": "^8.0.1"
+  }
+}
