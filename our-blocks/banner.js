@@ -1,6 +1,7 @@
 import { InnerBlocks } from "@wordpress/block-editor"
+import { registerBlockType } from "@wordpress/blocks"
 
-wp.blocks.registerBlockType("ourblocktheme/banner", {
+registerBlockType("ourblocktheme/banner", {
   title: "Banner",
   edit: EditComponent,
   save: SaveComponent,
@@ -34,9 +35,7 @@ function EditComponent() {
       />
       <div className="page-banner__content container t-center c-white">
         {/* 内部块，提供编辑功能 */}
-        <InnerBlocks
-          allowedBlocks={["core/paragraph", "core/heading", "core/list"]}
-        />
+        <InnerBlocks allowedBlocks={["ourblocktheme/genericheading"]} />
       </div>
     </div>
   )

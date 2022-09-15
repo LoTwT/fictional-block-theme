@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "wp-scripts start src/index.js our-blocks/banner.js",
+    "start": "wp-scripts start src/index.js our-blocks/*.js",
     "dev": "wp-scripts start",
     "devFast": "wp-scripts start"
   },
