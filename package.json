@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
+    "@wordpress/block-editor": "^10.0.0",
+    "@wordpress/blocks": "^11.16.0",
     "@wordpress/scripts": "*",
     "axios": "^0.27.2",
     "normalize.css": "^8.0.1"
