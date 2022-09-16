@@ -4,6 +4,7 @@ import {
   InspectorControls,
   BlockControls,
   __experimentalLinkControl as LinkControl,
+  getColorObjectByColorValue,
 } from "@wordpress/block-editor"
 import {
   ToolbarGroup,
@@ -11,11 +12,11 @@ import {
   Popover,
   Button,
   PanelBody,
-  PanelRow,
   ColorPalette,
 } from "@wordpress/components"
 import { link } from "@wordpress/icons"
 import { useState } from "@wordpress/element"
+import { ourColors } from "../inc/ourColors"
 
 registerBlockType("ourblocktheme/genericbutton", {
   title: "Generic Button",
@@ -30,6 +31,7 @@ registerBlockType("ourblocktheme/genericbutton", {
     linkObject: { type: "object", default: { url: "" } },
     colorName: {
       type: "string",
+      default: "blue",
     },
   },
   edit: EditComponent,
@@ -49,14 +51,14 @@ function EditComponent(props) {
     props.setAttributes({ linkObject: newLink })
   }
 
-  const ourColors = [
-    { name: "blue", color: "#0d3b66" },
-    { name: "orange", color: "#ee964b" },
-    { name: "dark-orange", color: "#f95738" },
-  ]
+  const currentColorValue = ourColors.filter(
+    (color) => color.name === props.attributes.colorName
+  )[0].color
 
   const handleColorChange = (colorCode) => {
-    props.setAttributes({ colorName: colorCode })
+    // colorCode 是组件返回的十六进制值，需要找到其对应的名称
+    const { name } = getColorObjectByColorValue(ourColors, colorCode)
+    props.setAttributes({ colorName: name })
   }
 
   return (
@@ -95,8 +97,10 @@ function EditComponent(props) {
       <InspectorControls>
         <PanelBody title="Color" initialOpen={true}>
           <ColorPalette
+            disableCustomColors={true}
+            clearable={false}
             colors={ourColors}
-            value={props.attributes.colorName}
+            value={currentColorValue}
             onChange={handleColorChange}
           />
         </PanelBody>
@@ -105,7 +109,7 @@ function EditComponent(props) {
       {/* 富文本 */}
       <RichText
         tagName="a"
-        className={`btn btn--${props.attributes.size} btn--blue`}
+        className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`}
         // 编辑器菜单允许的操作
         allowedFormats={[]}
         value={props.attributes.text}
@@ -140,7 +144,7 @@ function SaveComponent(props) {
   return (
     <a
       href={props.attributes.linkObject.url}
-      className={`btn btn--${props.attributes.size} btn--blue`}
+      className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`}
     >
       {props.attributes.text}
     </a>
