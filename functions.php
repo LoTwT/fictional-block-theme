@@ -191,4 +191,5 @@ class JSXBlock {
 
 new JSXBlock("banner");
 new JSXBlock("genericheading");
+new JSXBlock("genericbutton");
 /** 注册自定义 Block */

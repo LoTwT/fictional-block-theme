@@ -16,6 +16,8 @@
     "@wordpress/block-editor": "^10.0.0",
     "@wordpress/blocks": "^11.16.0",
     "@wordpress/components": "^21.0.0",
+    "@wordpress/element": "^4.15.0",
+    "@wordpress/icons": "^9.8.0",
     "@wordpress/scripts": "*",
     "axios": "^0.27.2",
     "normalize.css": "^8.0.1"
