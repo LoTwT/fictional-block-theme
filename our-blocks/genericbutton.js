@@ -86,7 +86,10 @@ function EditComponent(props) {
 
       {/* 修改按钮链接 */}
       {isLinkPickerVisible && (
-        <Popover position="middle center">
+        <Popover
+          position="middle center"
+          onFocusOutside={() => setIsLinkPickerVisible(false)}
+        >
           <LinkControl
             settings={[]}
             value={props.attributes.linkObject}
@@ -107,7 +110,10 @@ function EditComponent(props) {
 
 function SaveComponent(props) {
   return (
-    <a href={props.attributes.linkObject.url} className={`btn btn--${props.attributes.size} btn--blue`}>
+    <a
+      href={props.attributes.linkObject.url}
+      className={`btn btn--${props.attributes.size} btn--blue`}
+    >
       {props.attributes.text}
     </a>
   )
