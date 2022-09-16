@@ -1,6 +1,7 @@
 import { registerBlockType } from "@wordpress/blocks"
 import {
   RichText,
+  InspectorControls,
   BlockControls,
   __experimentalLinkControl as LinkControl,
 } from "@wordpress/block-editor"
@@ -9,6 +10,9 @@ import {
   ToolbarButton,
   Popover,
   Button,
+  PanelBody,
+  PanelRow,
+  ColorPalette,
 } from "@wordpress/components"
 import { link } from "@wordpress/icons"
 import { useState } from "@wordpress/element"
@@ -23,7 +27,10 @@ registerBlockType("ourblocktheme/genericbutton", {
       type: "string",
       default: "large",
     },
-    linkObject: { type: "object" },
+    linkObject: { type: "object", default: { url: "" } },
+    colorName: {
+      type: "string",
+    },
   },
   edit: EditComponent,
   save: SaveComponent,
@@ -40,6 +47,16 @@ function EditComponent(props) {
 
   const handleLinkChange = (newLink) => {
     props.setAttributes({ linkObject: newLink })
+  }
+
+  const ourColors = [
+    { name: "blue", color: "#0d3b66" },
+    { name: "orange", color: "#ee964b" },
+    { name: "dark-orange", color: "#f95738" },
+  ]
+
+  const handleColorChange = (colorCode) => {
+    props.setAttributes({ colorName: colorCode })
   }
 
   return (
@@ -73,6 +90,17 @@ function EditComponent(props) {
           </ToolbarButton>
         </ToolbarGroup>
       </BlockControls>
+
+      {/* 按钮调色板 */}
+      <InspectorControls>
+        <PanelBody title="Color" initialOpen={true}>
+          <ColorPalette
+            colors={ourColors}
+            value={props.attributes.colorName}
+            onChange={handleColorChange}
+          />
+        </PanelBody>
+      </InspectorControls>
 
       {/* 富文本 */}
       <RichText
