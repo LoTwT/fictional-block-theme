@@ -11,6 +11,18 @@
     }
   },
   "settings": {
+    "typography": {
+      "fontFamilies": [],
+      "fontStyle": false,
+      "fontWeight": false,
+      "letterSpacing": false,
+      "textDecoration": false,
+      "lineHeight": false,
+      "textTransform": false,
+      "dropCap": false,
+      "customFontSize": false,
+      "fontSizes": []
+    },
     "blocks": {
       "core/button": {
         "border": {
@@ -22,6 +34,15 @@
       }
     },
     "color": {
+      "background": true,
+      "text": false,
+      "link": false,
+      "custom": false,
+      "defaultPalette": false,
+      "duotone": [],
+      "customDuotone": false,
+      "gradients": [],
+      "customGradient": false,
       "palette": [
         {
           "slug": "primary",
@@ -35,7 +56,7 @@
         },
         {
           "slug": "background",
-          "color": "#ffffff",
+          "color": "#FFFFFF",
           "name": "Background"
         },
         {
