@@ -3,6 +3,12 @@ import { registerBlockType } from "@wordpress/blocks"
 
 registerBlockType("ourblocktheme/banner", {
   title: "Banner",
+  supports: {
+    align: ["full"], // 占据全屏宽度
+  },
+  attributes: {
+    align: { type: "string", default: "full" },
+  },
   edit: EditComponent,
   save: SaveComponent,
 })
