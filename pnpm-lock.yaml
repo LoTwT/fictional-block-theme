@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@glidejs/glide': ^3.5.2
+  '@wordpress/api-fetch': ^6.14.0
   '@wordpress/block-editor': ^10.0.0
   '@wordpress/blocks': ^11.16.0
   '@wordpress/components': ^21.0.0
@@ -13,6 +14,7 @@ specifiers:
 
 dependencies:
   '@glidejs/glide': 3.5.2
+  '@wordpress/api-fetch': 6.14.0
   '@wordpress/block-editor': 10.0.0
   '@wordpress/blocks': 11.16.0
   '@wordpress/components': 21.0.0
