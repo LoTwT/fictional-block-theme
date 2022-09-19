@@ -214,3 +214,30 @@ new JSXBlock("banner", true, ["fallbackimage" => get_theme_file_uri("/images/lib
 new JSXBlock("genericheading");
 new JSXBlock("genericbutton");
 /** 注册自定义 Block */
+
+class PlaceholderBlock {
+  function __construct($name) {
+    $this->name = $name;
+    add_action("init", [$this, "onInit"]);
+  }
+
+  function ourRenderCallback($attributes, $content) {
+    // 创建缓冲区读取 buffer
+    ob_start();
+    require get_theme_file_path("/our-blocks/{$this->name}.php");
+    return ob_get_clean();
+  }
+
+  function onInit() {
+    wp_register_script($this->name, get_stylesheet_directory_uri() . "/our-blocks/{$this->name}.js", array("wp-blocks", "wp-editor"));
+
+    $ourArgs = array(
+      "editor_script" => $this->name,
+      "render_callback" => [$this, "ourRenderCallback"]
+    );
+
+    register_block_type("ourblocktheme/{$this->name}", $ourArgs);
+  }
+}
+
+new PlaceholderBlock("eventsandblogs");
