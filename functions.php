@@ -176,9 +176,10 @@ function makeNotePrivate($data, $postarr) {
 
 /** 注册自定义 Block */
 class JSXBlock {
-  function __construct($name, $renderCallback = null) {
+  function __construct($name, $renderCallback = null, $data = null) {
     $this->name = $name;
     $this->renderCallback = $renderCallback;
+    $this->data = $data;
     add_action("init", [$this, "onInit"]);
   }
 
@@ -192,6 +193,11 @@ class JSXBlock {
   function onInit() {
     wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", array("wp-blocks", "wp-editor"));
 
+    // 水合默认数据
+    if ($this->data) {
+      wp_localize_script($this->name, $this->name, $this->data);
+    }
+
     $ourArgs = array(
       "editor_script" => $this->name
     );
@@ -204,7 +210,7 @@ class JSXBlock {
   }
 }
 
-new JSXBlock("banner", true);
+new JSXBlock("banner", true, ["fallbackimage" => get_theme_file_uri("/images/library-hero.jpg")]);
 new JSXBlock("genericheading");
 new JSXBlock("genericbutton");
 /** 注册自定义 Block */
