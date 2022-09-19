@@ -70,6 +70,12 @@ function university_features() {
   add_image_size("pageBanner", 1500, 350, true);
   add_theme_support("editor-styles");
   add_editor_style(array("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i", "build/style-index.css", "build/index.css"));
+
+  // 注册动态导航栏 ( 第二个参数显示在控制台中 )
+  register_nav_menu("headerMenuLocation", "Header Menu Location");
+  // 也可以用作底部动态导航
+  register_nav_menu("footerLocationOne", "Footer Location One");
+  register_nav_menu("footerLocationTwo", "Footer Location Two");
 }
 
 add_action("after_setup_theme", "university_features");
@@ -241,3 +247,5 @@ class PlaceholderBlock {
 }
 
 new PlaceholderBlock("eventsandblogs");
+new PlaceholderBlock("header");
+new PlaceholderBlock("footer");
