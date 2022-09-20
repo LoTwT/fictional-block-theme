@@ -1,5 +1,9 @@
 <?php
 
+  if ($attributes["themeimage"]) {
+    $attributes["imgURL"] = get_theme_file_uri("/images/" . $attributes["themeimage"]);
+  }
+
   // 容错
   if (!$attributes["imgURL"]) {
     $attributes["imgURL"] = get_theme_file_uri('/images/library-hero.jpg');

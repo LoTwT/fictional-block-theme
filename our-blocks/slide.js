@@ -18,12 +18,21 @@ registerBlockType("ourblocktheme/slide", {
     align: { type: "string", default: "full" },
     imgID: { type: "number" },
     imgURL: { type: "string", default: window.banner.fallbackimage },
+    themeimage: { type: "string" },
   },
   edit: EditComponent,
   save: SaveComponent,
 })
 
 function EditComponent(props) {
+  useEffect(() => {
+    if (props.attributes.themeimage) {
+      props.setAttributes({
+        imgURL: `${slide.themeimagepah}${props.attributes.themeimage}`,
+      })
+    }
+  }, [])
+
   useEffect(() => {
     if (props.attributes.imgID) {
       const go = async () => {
@@ -32,6 +41,7 @@ function EditComponent(props) {
           path: `/wp/v2/media/${props.attributes.imgID}`,
         })
         props.setAttributes({
+          themeimage: "",
           imgURL: response.media_details.sizes.pageBanner.source_url,
         })
       }
